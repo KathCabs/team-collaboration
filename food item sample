@@ -1,0 +1,76 @@
+import java.util.*;
+/**
+ *
+ * @author Windows 11Pro
+ */
+public class Cashier {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        rice_meal ricemeal= new rice_meal();
+        
+        System.out.println("MENU");
+       
+        System.out.println("[1] Beef Salpicao == "+ricemeal.locoMoco());
+        System.out.println("[2] Loco Moco == "+ricemeal.locoMoco());
+        System.out.println("[3] Adobo == "+ricemeal.locoMoco());
+        
+        System.out.print("What's your order? ");
+                
+        int yourOrder= scan.nextInt();
+        int quantity;
+        double total = 0;
+        switch (yourOrder){
+            case 1:
+                total += ricemeal.beefSalpicao();
+                System.out.print("Quantity: "); //type lang
+                quantity = scan.nextInt();
+                quantity *= total;
+                System.out.println(quantity);
+                break;
+            case 2:
+                total += ricemeal.locoMoco();
+                System.out.print("Quantity: "); //type lang
+                quantity = scan.nextInt();
+                quantity *= total;
+                System.out.println(quantity);
+                break;
+            case 3: 
+                total += ricemeal.adobo();
+                System.out.print("Quantity: "); //type lang
+                quantity = scan.nextInt();
+                quantity *= total;
+                System.out.println(quantity);
+                break;
+        }
+       
+    }
+    
+    
+    public int TotalAmount(){
+        
+        return 0;
+    }
+    
+}
+
+
+
+
+class rice_meal{
+    public String yourOrder;
+    public double beefSalpicao(){
+        int price= 14;
+        return price;
+    }
+    
+    public double locoMoco(){
+        int price= 14;
+        return price;
+    }
+    
+    public double adobo(){
+        int price= 14;
+        return price;
+    }
+}
