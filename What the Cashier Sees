@@ -1,0 +1,46 @@
+
+import java.util.Scanner;
+
+public class KrustyKrab {
+
+	public static void main(String[] args) {
+
+		Scanner input = new Scanner(System.in);
+		
+		double burgerPrice = 2.99;
+		double comboMealPrice = 5.99;
+		double snackPrice = 1.99;
+		double drinkPrice = 0.99;
+		
+		double cartTotal = 0.00;
+		
+		System.out.println("Cashier #1");
+		System.out.println("What is the customer's order?");
+		
+		System.out.print("Burger (a), Combo Meal (b), Snack (c), or Drink (d)? type 'done' to calculate the total\n");
+		String order = input.nextLine();
+		
+		while (!order.equalsIgnoreCase("done")) {
+			
+			if (order.equalsIgnoreCase("a")) {
+				cartTotal += burgerPrice;
+			}
+			else if (order.equalsIgnoreCase("b")) {
+				cartTotal += comboMealPrice;
+			}
+			else if (order.equalsIgnoreCase("c")) {
+				cartTotal += snackPrice;
+			}
+			else if (order.equalsIgnoreCase("d")) {
+				cartTotal += drinkPrice;
+			}
+			
+			System.out.print("Burger (a), Combo Meal (b), Snack (c), or Drink (d)? type 'done' to calculate the total\n");
+			order = input.next();
+		}
+		
+		System.out.println("The customer's total is $" + String.format("%.2f", cartTotal));
+		
+	}
+
+}
