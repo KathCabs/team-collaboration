@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
 package receipt;
 import java.util.*;
 import java.text.SimpleDateFormat;
@@ -27,7 +31,8 @@ public class Receipt {
         }
             int num = 0 + rand.nextInt(9);
             System.out.println(num);
-            
+        System.out.println("======================================================");
+        System.out.println("======================================================");
         System.out.println("    ");
         System.out.println("     Krusty Krab Restaurant #1234    ");
         System.out.println("           2378 PINE RD NW           ");
