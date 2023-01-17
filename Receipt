@@ -1,0 +1,44 @@
+package receipt;
+import java.util.*;
+import java.text.SimpleDateFormat;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+public class Receipt {
+
+
+    public static void main(String[] args) {
+        Random rand = new Random();
+        System.out.println("    Rate us HIGHLY SATISFIED and      ");
+        System.out.println("       Receive ONE FREE ITEM          ");
+        System.out.println("    Rate us HIGHLY SATISFIED and      ");
+        System.out.println(" Purchase any sandwich and receive an ");
+        System.out.println("    item of equal or lesser value     ");
+        System.out.println("Go to www.krustykrab.com within 7 days");
+        System.out.println("    and tell us about your visit.     ");
+        System.out.println("      Validation Code:____________    ");
+        System.out.println("  Expires 30 days after receipt date. ");
+        System.out.println("Valid at participating US Krusty Krab.");
+        System.out.println("            Survey Code:              ");
+        System.out.print("      ");
+        for (int i=1; i<=5;i++){
+            int random = 1000 + rand.nextInt(9000);
+            System.out.print(random);
+            System.out.print("-");
+        }
+            int num = 0 + rand.nextInt(9);
+            System.out.println(num);
+            
+        System.out.println("    ");
+        System.out.println("     Krusty Krab Restaurant #1234    ");
+        System.out.println("           2378 PINE RD NW           ");
+        System.out.println("         RICE, MN "+(10000+rand.nextInt(90000))+"-"+(1000+rand.nextInt(+9000)));
+        System.out.println("          TEL# 123 456 789        ");
+          DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+          LocalTime localTime = LocalTime.now();  
+        System.out.println(" \t\t\t    "+(java.time.LocalDate.now())+" "+(dtf.format(localTime)));
+        
+          
+        
+        
+    }
+}
