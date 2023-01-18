@@ -1,9 +1,13 @@
+
+import java.text.DecimalFormat;
+import javax.swing.table.DefaultTableModel;
+
 public class MENU extends javax.swing.JFrame {
 
     /**
      * Creates new form MENU
      */
-    public int i =0;
+   
     public MENU() {
         initComponents();
         
@@ -24,7 +28,15 @@ public class MENU extends javax.swing.JFrame {
         Snacks = new javax.swing.JButton();
         PlaceOrder = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        CartList = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        totalBill = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        chnge = new javax.swing.JTextField();
+        moneypaid = new javax.swing.JTextField();
+        ComputeChange = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -32,22 +44,22 @@ public class MENU extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         burger.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        burger.setLabel("Krabby Patty");
+        burger.setText("Krabby Patty");
         burger.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 burgerActionPerformed(evt);
             }
         });
-        getContentPane().add(burger, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 271, 332, 233));
+        getContentPane().add(burger, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 290, 233));
 
-        Meal.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        Meal.setLabel("MM and BB Meal");
+        Meal.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        Meal.setText("MM AND BB MEAL");
         Meal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MealActionPerformed(evt);
             }
         });
-        getContentPane().add(Meal, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 32, 332, 227));
+        getContentPane().add(Meal, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 290, 227));
 
         Drinks.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Drinks.setLabel("Kelp Shake");
@@ -56,7 +68,7 @@ public class MENU extends javax.swing.JFrame {
                 DrinksActionPerformed(evt);
             }
         });
-        getContentPane().add(Drinks, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 271, 376, 233));
+        getContentPane().add(Drinks, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 300, 233));
 
         Snacks.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Snacks.setText("Krabby Fry");
@@ -65,24 +77,70 @@ public class MENU extends javax.swing.JFrame {
                 SnacksActionPerformed(evt);
             }
         });
-        getContentPane().add(Snacks, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 32, 376, 227));
+        getContentPane().add(Snacks, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 300, 227));
 
         PlaceOrder.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        PlaceOrder.setLabel("Place Order");
+        PlaceOrder.setText("Place Order");
         PlaceOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PlaceOrderActionPerformed(evt);
             }
         });
-        getContentPane().add(PlaceOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 520, 293, 109));
+        getContentPane().add(PlaceOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 293, 109));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Cart");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 30, 141, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 40, 141, -1));
 
-        CartList.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        getContentPane().add(CartList, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 70, 240, 440));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Food", "Quantity", "Price", "Total"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, 420, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setText("Change : ");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 640, 170, 40));
+
+        totalBill.setEditable(false);
+        totalBill.setText("0.00");
+        getContentPane().add(totalBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 530, 120, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setText("Total Bill : ");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 520, 170, 40));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setText("Money Paid : ");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 560, 170, 40));
+
+        chnge.setEditable(false);
+        chnge.setText("0.00");
+        getContentPane().add(chnge, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 650, 120, -1));
+
+        moneypaid.setText("0.00");
+        moneypaid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moneypaidActionPerformed(evt);
+            }
+        });
+        getContentPane().add(moneypaid, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 570, 120, -1));
+
+        ComputeChange.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ComputeChange.setLabel("Compute For Change");
+        ComputeChange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComputeChangeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ComputeChange, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 600, 200, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wp2636472-spongebob-sky-background.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -90,39 +148,60 @@ public class MENU extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
+    private static final DecimalFormat df = new DecimalFormat("0.00");
+    public static void AddItem(Object[] dataRow)
+    {
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        model.addRow(dataRow);
+    }
+   
     private void burgerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_burgerActionPerformed
         BURGER b = new BURGER();    
-        this.setVisible(false);
+       
         b.setVisible(true);
             
     }//GEN-LAST:event_burgerActionPerformed
 
     private void MealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MealActionPerformed
         COMBOMEAL cm = new COMBOMEAL();
-        this.setVisible(false);
+        
         cm.setVisible(true);
     }//GEN-LAST:event_MealActionPerformed
 
     private void DrinksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DrinksActionPerformed
         DRINKS d = new DRINKS();
-        this.setVisible(false);
+        
         d.setVisible(true);
     }//GEN-LAST:event_DrinksActionPerformed
 
     private void SnacksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SnacksActionPerformed
         SNACKS s = new SNACKS();
-        this.setVisible(false);
+        
         s.setVisible(true);
         
     }//GEN-LAST:event_SnacksActionPerformed
 
     private void PlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlaceOrderActionPerformed
         RECEIPT r = new RECEIPT();
-        this.setVisible(false);
+        
         r.setVisible(true);
     }//GEN-LAST:event_PlaceOrderActionPerformed
 
+    private void moneypaidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moneypaidActionPerformed
+   
+    }//GEN-LAST:event_moneypaidActionPerformed
+
+    private void ComputeChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComputeChangeActionPerformed
+    double money = Double.parseDouble(moneypaid.getText());
+    double tbill = Double.parseDouble(totalBill.getText());
+    double change = money-tbill;
+    String txtchange = String.format("%.2f", change);
+    df.format(change);
+    chnge.setText(txtchange);        // TODO add your handling code here:
+    }//GEN-LAST:event_ComputeChangeActionPerformed
+    
    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -157,13 +236,21 @@ public class MENU extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JLabel CartList;
+    private javax.swing.JButton ComputeChange;
     private javax.swing.JButton Drinks;
     private javax.swing.JButton Meal;
     private javax.swing.JButton PlaceOrder;
     private javax.swing.JButton Snacks;
     private javax.swing.JButton burger;
+    public static javax.swing.JTextField chnge;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JTable jTable1;
+    public static javax.swing.JTextField moneypaid;
+    public static javax.swing.JTextField totalBill;
     // End of variables declaration//GEN-END:variables
 }

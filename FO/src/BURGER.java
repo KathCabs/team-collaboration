@@ -1,3 +1,9 @@
+
+import java.text.DecimalFormat;
+
+
+//import javax.swing.table.DefaultTableModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -31,8 +37,8 @@ public class BURGER extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        BurgerQty = new javax.swing.JTextField();
         Add = new javax.swing.JButton();
+        bQty = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,10 +72,8 @@ public class BURGER extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Quantity");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 313, 86, -1));
-        getContentPane().add(BurgerQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(624, 317, 51, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 86, -1));
 
-        Add.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Add.setLabel("Add to Cart");
         Add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,33 +81,43 @@ public class BURGER extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Add, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 375, 96, 35));
+        getContentPane().add(bQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 320, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wp2636472-spongebob-sky-background.jpg"))); // NOI18N
         jLabel6.setText("jLabel6");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, 490));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+private static final DecimalFormat df = new DecimalFormat("0.00");
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        MENU m = new MENU();
-        this.setVisible(false);
-        m.setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_BackActionPerformed
 
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
+      int Bqty = (Integer)bQty.getValue();
+      double price = 2.99;
+      double total = price * Bqty;
+      df.format(total);
+        MENU.AddItem(new Object []{
+       "Krabby Patty",
+        Bqty,
+        price,
+        total
        
-        
-        MENU m = new MENU();
-        Patty burger = new Patty();
-        burger.setBurgerInfo("Krabby Patty",Integer.parseInt(BurgerQty.getText()) , 2.99);
-        int bQty = burger.getBurgerQty();
-        String bName = burger.getBurgerName();  
-        double bTotal=burger.getBurgerTotalPrice();
-        m.CartList.setText( m.CartList.getText() + bName +" "+ bQty +" "+ bTotal );
-        this.setVisible(false);
-        m.setVisible(true);
-        
+       
+       });
+       
+         double bill = 0;
+    for(int a = 0;a<MENU.jTable1.getRowCount();a++)
+    {
+        bill=bill + Double.parseDouble(MENU.jTable1.getValueAt(a,3).toString());
+       
+    }
+    String tbill = String.format("%.2f", bill);
+    MENU.totalBill.setText(tbill);
+    this.setVisible(false);
     }//GEN-LAST:event_AddActionPerformed
 
     /**
@@ -144,7 +158,7 @@ public class BURGER extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add;
     private javax.swing.JButton Back;
-    private javax.swing.JTextField BurgerQty;
+    private javax.swing.JSpinner bQty;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -1,3 +1,6 @@
+
+import java.text.DecimalFormat;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -30,8 +33,8 @@ public class SNACKS extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        SnacksQty = new javax.swing.JTextField();
         Add = new javax.swing.JButton();
+        fqty = new javax.swing.JSpinner();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,10 +62,15 @@ public class SNACKS extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Quantity");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 365, 69, 32));
-        getContentPane().add(SnacksQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(501, 371, 43, -1));
 
         Add.setLabel("Add to Cart");
+        Add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddActionPerformed(evt);
+            }
+        });
         getContentPane().add(Add, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 403, 94, 37));
+        getContentPane().add(fqty, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wp2636472-spongebob-sky-background.jpg"))); // NOI18N
         jLabel5.setText("jLabel5");
@@ -70,12 +78,35 @@ public class SNACKS extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+private static final DecimalFormat df = new DecimalFormat("0.00");
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        MENU m = new MENU();
         this.setVisible(false);
-        m.setVisible(true);
     }//GEN-LAST:event_BackActionPerformed
+
+    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
+        int FQTY = (Integer)fqty.getValue();
+        double price = 1.99;
+        double total = FQTY * price;
+        df.format(total);
+        MENU.AddItem(new Object[]{
+        "Krabby Fry",
+         FQTY,
+         price,
+         total
+        
+        
+        });
+         double bill = 0;
+    for(int a = 0;a<MENU.jTable1.getRowCount();a++)
+    {
+        bill=bill + Double.parseDouble(MENU.jTable1.getValueAt(a,3).toString());
+      
+    }
+    String tbill = String.format("%.2f", bill);
+    MENU.totalBill.setText(tbill);
+    this.setVisible(false);
+        this.setVisible(false);
+    }//GEN-LAST:event_AddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,7 +146,7 @@ public class SNACKS extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add;
     private javax.swing.JButton Back;
-    private javax.swing.JTextField SnacksQty;
+    private javax.swing.JSpinner fqty;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

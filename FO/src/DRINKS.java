@@ -1,3 +1,6 @@
+
+import java.text.DecimalFormat;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -30,8 +33,8 @@ public class DRINKS extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        DrinkQty = new javax.swing.JTextField();
         Add = new javax.swing.JButton();
+        dqty = new javax.swing.JSpinner();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,7 +63,6 @@ public class DRINKS extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Quantity");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 304, 72, 30));
-        getContentPane().add(DrinkQty, new org.netbeans.lib.awtextra.AbsoluteConstraints(624, 309, 42, -1));
 
         Add.setLabel("Add to Cart");
         Add.addActionListener(new java.awt.event.ActionListener() {
@@ -69,30 +71,44 @@ public class DRINKS extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Add, new org.netbeans.lib.awtextra.AbsoluteConstraints(546, 346, 95, 40));
+        getContentPane().add(dqty, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wp2636472-spongebob-sky-background.jpg"))); // NOI18N
         jLabel5.setText("jLabel5");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 510));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+private static final DecimalFormat df = new DecimalFormat("0.00");
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-         MENU m = new MENU();
-        this.setVisible(false);
-        m.setVisible(true);
+         this.setVisible(false);
     }//GEN-LAST:event_BackActionPerformed
 
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
-         MENU m = new MENU();
-        Shake f = new Shake();
-        f.setDrinkInfo("Kelp Shake",Integer.parseInt(DrinkQty.getText()) , 0.99);
-        int bQty = f.getDrinkQty();
-        String bName = f.getDrinkName();  
-        double bTotal=f.getDrinkTotalPrice();
-        m.CartList.setText( m.CartList.getText() + "hehe" );
-        this.setVisible(false);
-        m.setVisible(true);
+      int DQTY = (Integer)dqty.getValue();
+      double price = .99;
+      double total = DQTY * price;
+      df.format(total);
+      MENU.AddItem(new Object[]{
+      "Kelp Shake",
+      DQTY,
+      price,
+      total
+      
+      
+      
+      });
+       double bill = 0;
+    for(int a = 0;a<MENU.jTable1.getRowCount();a++)
+    {
+        bill=bill + Double.parseDouble(MENU.jTable1.getValueAt(a,3).toString());
+        
+    }
+    String tbill = String.format("%.2f", bill);
+    MENU.totalBill.setText(tbill);
+    this.setVisible(false);
+      this.setVisible(false);
         
     }//GEN-LAST:event_AddActionPerformed
 
@@ -134,7 +150,7 @@ public class DRINKS extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add;
     private javax.swing.JButton Back;
-    private javax.swing.JTextField DrinkQty;
+    private javax.swing.JSpinner dqty;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
