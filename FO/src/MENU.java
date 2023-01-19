@@ -193,14 +193,26 @@ public class MENU extends javax.swing.JFrame {
    
     }//GEN-LAST:event_moneypaidActionPerformed
 
-    private void ComputeChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComputeChangeActionPerformed
+    private void ComputeChangeActionPerformed(java.awt.event.ActionEvent evt) {                                              
     double money = Double.parseDouble(moneypaid.getText());
     double tbill = Double.parseDouble(totalBill.getText());
     double change = money-tbill;
-    String txtchange = String.format("%.2f", change);
-    df.format(change);
-    chnge.setText(txtchange);        // TODO add your handling code here:
-    }//GEN-LAST:event_ComputeChangeActionPerformed
+    if (tbill > money)
+    {
+        infoBox("Insufficient Money!!","Money Error");
+    }
+        else 
+    {
+        String txtchange = String.format("%.2f", change);
+        df.format(change);
+        chnge.setText(txtchange);
+    }
+    
+    }                                             
+     public static void infoBox(String infoMessage, String titleBar)
+    {
+        JOptionPane.showMessageDialog(null, infoMessage,titleBar, JOptionPane.INFORMATION_MESSAGE);
+    }
     
    
     public static void main(String args[]) {
