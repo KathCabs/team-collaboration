@@ -1,0 +1,23 @@
+import java.io.File;
+import java.io.FileWriter;
+
+{
+        if (choice.equals("Place Order")) { // change this to whatever object the place order button is named after
+            if (password.matches("^[A-Za-z0-9]+$")) 
+            {
+                // Save the username and password in a text file
+                try 
+                {
+                    File file = new File("txt");
+                    FileWriter fw = new FileWriter(file, true);
+                    
+                    fw.write(" "); // dito ata yung resibo
+                    fw.close();
+                    System.out.println("Registration successful!");
+                } catch (Exception e) 
+                {
+                    System.out.println("Error writing to file.");
+                }
+
+             }
+}
